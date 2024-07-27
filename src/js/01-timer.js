@@ -43,6 +43,19 @@ const options = {
   },
 };
 
+function convertMs(ms) {
+  const second = 1000;
+  const minute = second * 60;
+  const hour = minute * 60;
+  const day = hour * 24;
+
+  const days = Math.floor(ms / day); // Remaining days
+  const hours = Math.floor((ms % day) / hour); // Remaining hours
+  const minutes = Math.floor(((ms % day) % hour) / minute); // Remaining minutes
+  const seconds = Math.floor((((ms % day) % hour) % minute) / second); // Remaining seconds
+  return { days, hours, minutes, seconds };
+}
+
 flatpickr(inputField, options);
 
 function resetDisplay() {
